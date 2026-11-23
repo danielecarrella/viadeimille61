@@ -58,7 +58,7 @@ defaults:
 exclude:
   - NOVITA-COME-FARE.md
   - README.md
-  - avvia.bat
+  - "avvia*.bat"
   - "*.zip"
   - "*.xlsx"
   - Gemfile
