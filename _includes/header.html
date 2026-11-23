@@ -1,0 +1,33 @@
+{%- comment -%} In home i link puntano alle sezioni (#...), nelle altre pagine tornano alla home (/#...) {%- endcomment -%}
+{%- if page.home -%}{%- assign base = '' -%}{%- else -%}{%- assign base = '/' | relative_url -%}{%- endif -%}
+<header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="{% if page.home %}#top{% else %}{{ '/' | relative_url }}{% endif %}" class="nav__logo" aria-label="Via dei Mille 61 – Agenzia Zurich, torna all'inizio">
+        <span class="nav__mark">
+          <img class="logo-white" src="{{ '/assets/img/monogram-white.png' | relative_url }}" alt="">
+          <img class="logo-color" src="{{ '/assets/img/monogram.png' | relative_url }}" alt="">
+        </span>
+        <span class="nav__name">Via dei Mille 61<small>Agenzia Zurich</small></span>
+      </a>
+
+      <nav class="nav__menu" id="menu" aria-label="Menu principale">
+        <a href="{{ base }}#agenzia">L'agenzia</a>
+        <a href="{{ base }}#soluzioni">Soluzioni</a>
+        <a href="{{ base }}#metodo">Come lavoriamo</a>
+        {%- if site.data.team.size > 0 %}
+        <a href="{{ base }}#team">Il team</a>
+        {%- endif %}
+        <a href="{{ base }}#sinistri">Sinistri</a>
+        <a href="{{ base }}#lavora">Lavora con noi</a>
+        <a href="{{ base }}#contatti">Contatti</a>
+        <a href="{{ base }}#contatti" class="btn btn--ghost btn--sm nav__cta">
+          Richiedi un preventivo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+
+      <button class="nav__burger" id="burger" aria-label="Apri menu" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>

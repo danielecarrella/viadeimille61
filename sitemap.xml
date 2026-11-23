@@ -1,0 +1,21 @@
+---
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ '/' | absolute_url }}</loc>
+    <lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
+  </url>
+  <url>
+    <loc>{{ '/novita/' | absolute_url }}</loc>
+    <lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
+  </url>
+  {%- assign notizie = site.novita | sort: 'date' | reverse %}
+  {%- for n in notizie %}
+  <url>
+    <loc>{{ n.url | absolute_url }}</loc>
+    <lastmod>{{ n.date | date: '%Y-%m-%d' }}</lastmod>
+  </url>
+  {%- endfor %}
+</urlset>

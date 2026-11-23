@@ -2,3 +2,13 @@
 *.zip
 *.xlsx
 avvia.bat
+
+# File generati da Jekyll in locale
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Dati di prova per l anteprima locale (mai pubblicati)
+_anteprima/
+_config.anteprima.yml

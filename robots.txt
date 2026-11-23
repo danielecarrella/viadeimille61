@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://viadeimille61.it/sitemap.xml

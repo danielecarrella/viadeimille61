@@ -1,0 +1,24 @@
+{%- comment -%} "Novità" in home: le ultime 3 notizie pubblicate. Se non ce ne sono, la sezione non compare {%- endcomment -%}
+{%- assign notizie = site.novita | sort: 'date' | reverse -%}
+{%- if notizie.size > 0 %}
+    <!-- NOVITÀ -->
+    <section class="section news" id="novita">
+      <div class="container">
+        <div class="section__head section__head--row">
+          <div>
+            <p class="kicker reveal">Novità</p>
+            <h2 class="h2 reveal">Le ultime <em>dall'agenzia.</em></h2>
+          </div>
+          <a class="btn btn--outline reveal" href="{{ '/novita/' | relative_url }}">
+            Tutte le novità
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="news__grid">
+          {%- for n in notizie limit: 3 %}
+          {% include novita-card.html notizia=n %}
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+{%- endif %}

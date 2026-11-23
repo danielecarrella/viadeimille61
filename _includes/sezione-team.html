@@ -1,0 +1,52 @@
+{%- comment -%} "Il team": compare solo se _data/team.yml contiene almeno una persona {%- endcomment -%}
+{%- if site.data.team.size > 0 %}
+    <!-- IL TEAM -->
+    <section class="section team" id="team">
+      <div class="container">
+        <div class="section__head">
+          <p class="kicker reveal">Il team</p>
+          <h2 class="h2 reveal">Le persone <em>dell'agenzia.</em></h2>
+          <p class="section__lead reveal">Ognuno segue un ambito preciso: contatta direttamente chi può aiutarti.</p>
+        </div>
+        <div class="team__grid">
+          {%- for p in site.data.team %}
+          {%- assign parti = p.nome | strip | split: ' ' -%}
+          {%- assign nome_proprio = parti | first -%}
+          {%- capture iniziali -%}{{ parti.first | slice: 0 }}{% if parti.size > 1 %}{{ parti.last | slice: 0 }}{% endif %}{%- endcapture -%}
+          {%- assign foto_trovata = false -%}
+          {%- if p.foto and p.foto != '' -%}
+            {%- assign percorso_foto = '/assets/img/team/' | append: p.foto -%}
+            {%- assign foto_trovata = site.static_files | where: 'path', percorso_foto | first -%}
+          {%- endif %}
+          <article class="person reveal">
+            <div class="person__photo">
+              {%- if foto_trovata %}
+              <img src="{{ percorso_foto | relative_url }}" alt="{{ p.nome | escape }}" width="600" height="600" loading="lazy">
+              {%- else %}
+              <span class="person__initials" aria-hidden="true">{{ iniziali | upcase }}</span>
+              {%- endif %}
+            </div>
+            <div class="person__body">
+              <h3>{{ p.nome | escape }}</h3>
+              <p class="person__role">{{ p.ruolo | escape }}</p>
+              {%- if p.descrizione %}
+              <p class="person__desc">{{ p.descrizione | escape }}</p>
+              {%- endif %}
+              {%- if p.email and p.email != '' %}
+              <a class="btn btn--outline btn--sm person__cta" href="mailto:{{ p.email }}">
+                Scrivi a {{ nome_proprio | escape }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              {%- elsif p.telefono and p.telefono != '' %}
+              <a class="btn btn--outline btn--sm person__cta" href="tel:{{ p.telefono | remove: ' ' }}">
+                Chiama {{ nome_proprio | escape }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              {%- endif %}
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+{%- endif %}

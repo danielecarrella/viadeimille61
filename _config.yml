@@ -1,0 +1,65 @@
+# Configurazione del sito viadeimille61.it
+# GitHub Pages costruisce il sito con Jekyll partendo da questi file.
+
+title: "Via dei Mille 61 – Agenzia Zurich"
+description: "Via dei Mille 61, Agenzia Zurich a Napoli. Consulenza assicurativa in agenzia per privati, famiglie, professionisti e imprese: auto, casa, salute, risparmio, previdenza e protezione aziendale."
+url: "https://viadeimille61.it"
+baseurl: ""
+lang: it
+timezone: Europe/Rome
+
+# ------------------------------------------------------------------
+# DATI DELL'AGENZIA
+# Si cambiano solo qui e si aggiornano ovunque: contatti, piè di pagina,
+# "Dove siamo", pulsante WhatsApp e dati strutturati per Google.
+# ------------------------------------------------------------------
+agenzia:
+  nome: "Via dei Mille 61"
+  ragione_sociale: "Via dei Mille 61 S.r.l."
+  indirizzo: "Via dei Mille, 61"
+  cap: "80121"
+  comune: "Napoli"
+  provincia: "NA"
+  telefono: "081 411792"          # come si legge sul sito
+  telefono_link: "+39081411792"   # per i link "chiama" (solo cifre, con +39)
+  email: "viadeimille61@gmail.com"
+  # Numero WhatsApp: solo cifre con prefisso internazionale, es. "393331234567".
+  # Finché è vuoto il pulsante WhatsApp non compare.
+  whatsapp: ""
+  maps: "https://www.google.com/maps/search/?api=1&query=Via+dei+Mille+61+80121+Napoli"
+  # Orari come si leggono sul sito
+  orari_giorni: "Lun–Ven"
+  orari_testo: "9:00–13:30 · 15:30–19:00"
+  # Gli stessi orari nel formato per Google (giorni in inglese, ore hh:mm)
+  orari_schema:
+    - giorni: [Monday, Tuesday, Wednesday, Thursday, Friday]
+      apre: "09:00"
+      chiude: "13:30"
+    - giorni: [Monday, Tuesday, Wednesday, Thursday, Friday]
+      apre: "15:30"
+      chiude: "19:00"
+
+# ------------------------------------------------------------------
+# NOVITÀ: un file per notizia nella cartella _novita (vedi NOVITA-COME-FARE.md)
+# ------------------------------------------------------------------
+collections:
+  novita:
+    output: true
+    permalink: /novita/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: novita
+    values:
+      layout: notizia
+
+# File presenti nella cartella ma da non pubblicare
+exclude:
+  - NOVITA-COME-FARE.md
+  - README.md
+  - avvia.bat
+  - "*.zip"
+  - "*.xlsx"
+  - Gemfile
+  - Gemfile.lock

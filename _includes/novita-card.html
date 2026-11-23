@@ -1,0 +1,14 @@
+{%- assign n = include.notizia -%}
+<article class="news-card reveal">
+            <a class="news-card__link" href="{{ n.url | relative_url }}">
+              {%- if n.immagine %}
+              <span class="news-card__img"><img src="{{ n.immagine | relative_url }}" alt="" loading="lazy"></span>
+              {%- endif %}
+              <span class="news-card__body">
+                <time datetime="{{ n.date | date: '%Y-%m-%d' }}">{% include data-it.html data=n.date %}</time>
+                <span class="news-card__title">{{ n.titolo }}</span>
+                <span class="news-card__text">{{ n.riassunto | default: n.content | strip_html | strip_newlines | truncatewords: 26 }}</span>
+                <span class="card__more">Leggi la notizia <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </span>
+            </a>
+          </article>

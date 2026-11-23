@@ -1,0 +1,11 @@
+# Recensioni dei clienti — sezione "Dicono di noi".
+# Finché l'elenco è vuoto ( [] ) la sezione NON compare sul sito.
+#
+# Usare solo recensioni reali, copiate senza modifiche.
+# Per aggiungerle, sostituire [] con un elenco come questo:
+#
+# - testo: "Testo della recensione, copiato senza modifiche."
+#   nome: "Mario R."
+# - testo: "Altra recensione."
+#   nome: "Anna B."
+[]

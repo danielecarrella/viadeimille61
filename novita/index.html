@@ -1,0 +1,27 @@
+---
+layout: default
+titolo: "Novità"
+descrizione: "Le novità di Via dei Mille 61, agenzia Zurich a Napoli: aggiornamenti e comunicazioni dell'agenzia."
+permalink: /novita/
+---
+    <header class="page-hero">
+      <div class="container">
+        <p class="kicker">Novità</p>
+        <h1 class="page-hero__title">Le novità <em class="grad">dell'agenzia.</em></h1>
+      </div>
+    </header>
+
+    <section class="section news news--page">
+      <div class="container">
+        {%- assign notizie = site.novita | sort: 'date' | reverse -%}
+        {%- if notizie.size > 0 %}
+        <div class="news__grid">
+          {%- for n in notizie %}
+          {% include novita-card.html notizia=n %}
+          {%- endfor %}
+        </div>
+        {%- else %}
+        <p class="news__empty">Al momento non ci sono novità pubblicate. <a class="link" href="{{ '/' | relative_url }}">Torna alla home</a></p>
+        {%- endif %}
+      </div>
+    </section>

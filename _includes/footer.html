@@ -1,0 +1,46 @@
+{%- if page.home -%}{%- assign base = '' -%}{%- else -%}{%- assign base = '/' | relative_url -%}{%- endif -%}
+<footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="{{ '/assets/img/logo-white.png' | relative_url }}" alt="Via dei Mille 61 – Agenzia Zurich" loading="lazy">
+        </div>
+        <div>
+          <h4>Menu</h4>
+          <a href="{{ base }}#agenzia">L'agenzia</a>
+          <a href="{{ base }}#soluzioni">Soluzioni</a>
+          <a href="{{ base }}#metodo">Come lavoriamo</a>
+          {%- if site.data.team.size > 0 %}
+          <a href="{{ base }}#team">Il team</a>
+          {%- endif %}
+          <a href="{{ base }}#sinistri">Sinistri</a>
+          {%- if site.novita.size > 0 %}
+          <a href="{{ '/novita/' | relative_url }}">Novità</a>
+          {%- endif %}
+          <a href="{{ base }}#lavora">Lavora con noi</a>
+          <a href="{{ base }}#contatti">Contatti</a>
+          <a href="{{ base }}#dove-siamo">Dove siamo</a>
+        </div>
+        <div>
+          <h4>Agenzia</h4>
+          <p>{{ site.agenzia.indirizzo }}<br>{{ site.agenzia.cap }} {{ site.agenzia.comune }} ({{ site.agenzia.provincia }})</p>
+          <p>{{ site.agenzia.orari_giorni }}<br>{{ site.agenzia.orari_testo }}</p>
+        </div>
+        <div>
+          <h4>Contatti</h4>
+          <a href="tel:{{ site.agenzia.telefono_link }}">{{ site.agenzia.telefono }}</a>
+          <a href="mailto:{{ site.agenzia.email }}">{{ site.agenzia.email }}</a>
+          <a href="https://www.zurich.it" target="_blank" rel="noopener">zurich.it</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="year"></span> Via dei Mille 61 S.r.l. – Agenzia Zurich · Sede legale Via dei Mille 61, 80121 Napoli (NA) · C.F. e P.IVA 10062171219 · REA NA-1077734 · PEC <a href="mailto:viadeimille61@pec.it">viadeimille61@pec.it</a> · Iscrizione RUI n. A000711203</p>
+        <nav>
+          <a href="#">Informativa privacy</a>
+          <a href="#">Informativa precontrattuale</a>
+          <a href="#">Reclami</a>
+          <a href="#">Cookie policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>

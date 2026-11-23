@@ -1,0 +1,12 @@
+# Altri punti sul territorio — sezione "Dove siamo".
+# La sede di Napoli compare sempre e prende indirizzo, telefono e orari
+# da _config.yml (voce "agenzia"): qui vanno solo gli ALTRI punti.
+#
+# Per aggiungerli, sostituire [] con un elenco come questo:
+#
+# - nome: "Punto di Comune – Nome del collaboratore"
+#   comune: "Comune"
+#   indirizzo: "Via Esempio, 1 – 80000 Comune (NA)"
+#   telefono: "081 000000"
+#   orari: "Lun–Ven 9:00–13:00"
+[]

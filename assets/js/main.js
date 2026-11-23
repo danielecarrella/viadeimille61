@@ -2,8 +2,8 @@
    Via dei Mille 61 — interazioni
    ========================================================= */
 (function () {
-  // email dell'agenzia (usata dai form)
-  const AGENCY_EMAIL = 'viadeimille61@gmail.com';
+  // email dell'agenzia (usata dai form): arriva da _config.yml tramite <body data-email>
+  const AGENCY_EMAIL = document.body.dataset.email || 'viadeimille61@gmail.com';
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -68,9 +68,10 @@
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  /* ---------- Tab Privati / Imprese ---------- */
+  /* ---------- Tab Privati / Imprese (solo in home) ---------- */
   const tabs = [...document.querySelectorAll('.tabs [role=tab]')];
   const pill = document.querySelector('.tabs__pill');
+  if (tabs.length && pill) {
   function movePill(btn) {
     pill.style.width = btn.offsetWidth + 'px';
     pill.style.transform = `translateX(${btn.offsetLeft - 5}px)`;
@@ -104,6 +105,7 @@
   movePill(tabs[0]);
   window.addEventListener('resize', () => movePill(tabs.find((b) => b.classList.contains('is-active'))));
   document.fonts && document.fonts.ready.then(() => movePill(tabs.find((b) => b.classList.contains('is-active'))));
+  }
 
   /* ---------- Pannello hero: Privati / Imprese ---------- */
   const quickTabs = [...document.querySelectorAll('[data-quick]')];
@@ -124,7 +126,7 @@
 
   /* ---------- Card soluzioni e scorciatoie hero -> form precompilato ---------- */
   const areaSelect = document.getElementById('area');
-  document.querySelectorAll('button[data-area]').forEach((card) => {
+  if (areaSelect) document.querySelectorAll('button[data-area]').forEach((card) => {
     card.addEventListener('click', () => {
       areaSelect.value = card.dataset.area;
       scrollToEl(document.getElementById('contatti'));
@@ -144,16 +146,18 @@
     }
     gsap.registerPlugin(ScrollTrigger);
 
-    // hero
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.1 });
-    tl.fromTo('.hero__title .reveal-hero', { opacity: 1, yPercent: 105 }, { yPercent: 0, duration: 1.3, stagger: 0.1 })
-      .fromTo(['.hero__lead', '.hero__actions', '.hero .quick', '.hero__stats'], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.1 }, '-=0.95');
+    // hero (solo in home)
+    if (document.querySelector('.hero')) {
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.1 });
+      tl.fromTo('.hero__title .reveal-hero', { opacity: 1, yPercent: 105 }, { yPercent: 0, duration: 1.3, stagger: 0.1 })
+        .fromTo(['.hero__lead', '.hero__actions', '.hero .quick', '.hero__stats'], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.1 }, '-=0.95');
 
-    // il testo della hero sfuma verso l'alto allo scroll
-    gsap.to('.hero__content', {
-      yPercent: -15, opacity: 0, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-    });
+      // il testo della hero sfuma verso l'alto allo scroll
+      gsap.to('.hero__content', {
+        yPercent: -15, opacity: 0, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+      });
+    }
 
     // comparsa morbida dei contenuti
     ScrollTrigger.batch('.reveal', {
@@ -165,10 +169,12 @@
     });
 
     // step sinistri: ingresso in prospettiva
-    gsap.fromTo('.claims__steps .step', { rotateX: 14, transformPerspective: 1000, transformOrigin: '50% 100%' }, {
-      rotateX: 0, ease: 'none', stagger: 0.08,
-      scrollTrigger: { trigger: '.claims__steps', start: 'top bottom', end: 'top 60%', scrub: true },
-    });
+    if (document.querySelector('.claims__steps')) {
+      gsap.fromTo('.claims__steps .step', { rotateX: 14, transformPerspective: 1000, transformOrigin: '50% 100%' }, {
+        rotateX: 0, ease: 'none', stagger: 0.08,
+        scrollTrigger: { trigger: '.claims__steps', start: 'top bottom', end: 'top 60%', scrub: true },
+      });
+    }
   }
 
   // parte appena i font sono pronti (al massimo dopo 900 ms)
@@ -203,9 +209,24 @@
     });
   }
 
+  /* ---------- WhatsApp: su telefono si nasconde mentre un modulo è a schermo ---------- */
+  const wa = document.querySelector('.wa');
+  if (wa && 'IntersectionObserver' in window) {
+    const small = window.matchMedia('(max-width: 640px)');
+    const onScreen = new Set();
+    const update = () => wa.classList.toggle('is-hidden', small.matches && onScreen.size > 0);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { en.isIntersecting ? onScreen.add(en.target) : onScreen.delete(en.target); });
+      update();
+    });
+    document.querySelectorAll('.form').forEach((f) => io.observe(f));
+    small.addEventListener ? small.addEventListener('change', update) : small.addListener(update);
+  }
+
   /* ---------- Lavora con noi: i bottoni scelgono il percorso nel form ---------- */
   const jobsForm = document.getElementById('jobs-form');
   const jobsRole = document.getElementById('jobs-role');
+  if (jobsForm && jobsRole) {
   document.querySelectorAll('[data-role]').forEach((btn) => {
     btn.addEventListener('click', () => {
       jobsRole.value = btn.dataset.role;
@@ -224,10 +245,11 @@
       `${d.get('messaggio') || ''}\n\n(Allego il mio curriculum)`;
     window.location.href = `mailto:${AGENCY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
+  }
 
   /* ---------- Form contatti (apre il client email) ---------- */
   const form = document.getElementById('contact-form');
-  form.addEventListener('submit', (e) => {
+  if (form) form.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = new FormData(form);
     const subject = `Richiesta dal sito – ${d.get('area')}`;

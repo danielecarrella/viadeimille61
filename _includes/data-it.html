@@ -1,0 +1,4 @@
+{%- comment -%} Scrive una data in italiano, es. 23 novembre 2026. Parametro: data {%- endcomment -%}
+{%- assign mesi = "gennaio,febbraio,marzo,aprile,maggio,giugno,luglio,agosto,settembre,ottobre,novembre,dicembre" | split: "," -%}
+{%- assign indice_mese = include.data | date: "%-m" | minus: 1 -%}
+{{- include.data | date: "%-d" }} {{ mesi[indice_mese] }} {{ include.data | date: "%Y" -}}
