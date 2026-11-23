@@ -1,7 +1,7 @@
 # Materiale di lavoro: non va pubblicato sul sito
 *.zip
 *.xlsx
-avvia.bat
+avvia*.bat
 
 # File generati da Jekyll in locale
 _site/
