@@ -90,10 +90,10 @@ Se nel titolo o nel riassunto servono le virgolette, usa quelle tipografiche
 - **Nasconderla senza cancellarla**: aggiungi la riga `published: false` tra le righe `---`.
 - **Cancellarla**: apri il file, menu **…** in alto a destra → **Delete file** → **Commit changes**.
 
-## Il file di esempio
+## Partire da una notizia già pubblicata
 
-Nella cartella c'è `2026-11-23-esempio-bozza.md`: è **solo un modello**, segnato come bozza
-(`published: false`) e quindi **non compare sul sito**. Puoi copiarlo come base e poi cancellarlo.
+Puoi aprire una delle notizie già presenti in `_novita`, copiarne il contenuto
+nel nuovo file e sostituire titolo, data, riassunto e testo.
 
 ## Cosa non scrivere nelle notizie
 
