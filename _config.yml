@@ -22,7 +22,7 @@ agenzia:
   provincia: "NA"
   telefono: "081 411792"          # come si legge sul sito
   telefono_link: "+39081411792"   # per i link "chiama" (solo cifre, con +39)
-  email: "viadeimille61@gmail.com"
+  email: "na021@agenziazurich.it"
   # Numero WhatsApp: solo cifre con prefisso internazionale, es. "393331234567".
   # Finché è vuoto il pulsante WhatsApp non compare.
   whatsapp: ""

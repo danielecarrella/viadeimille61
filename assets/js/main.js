@@ -3,7 +3,7 @@
    ========================================================= */
 (function () {
   // email dell'agenzia (usata dai form): arriva da _config.yml tramite <body data-email>
-  const AGENCY_EMAIL = document.body.dataset.email || 'viadeimille61@gmail.com';
+  const AGENCY_EMAIL = document.body.dataset.email || 'na021@agenziazurich.it';
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
