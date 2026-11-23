@@ -47,6 +47,10 @@ collections:
     output: true
     permalink: /novita/:name/
 
+# Pubblica sempre le notizie, anche con una data "futura": senza questa riga
+# una notizia datata domani comparirebbe in home ma la sua pagina non esisterebbe.
+future: true
+
 defaults:
   - scope:
       path: ""

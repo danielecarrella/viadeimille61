@@ -47,6 +47,7 @@ Per andare a capo e iniziare un nuovo paragrafo lascia una riga vuota.
 - **titolo**: tra virgolette.
 - **date**: la data della notizia, nel formato anno-mese-giorno (es. 2026-12-01).
   Le notizie sono ordinate per questa data, dalla più recente.
+  La data **non programma** l'uscita: la notizia va online appena la salvi, anche se la data è futura.
 - **riassunto**: compare nelle anteprime in home e su Google. Tra virgolette.
 - **immagine**: facoltativa (vedi il punto 4). Se non c'è, lascia vuoto.
 - Le tre righe con `---` vanno lasciate esattamente come sono.
