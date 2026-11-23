@@ -12,3 +12,6 @@ _site/
 # Dati di prova per l anteprima locale (mai pubblicati)
 _anteprima/
 _config.anteprima.yml
+
+# Script per avviare Jekyll in locale
+_locale/

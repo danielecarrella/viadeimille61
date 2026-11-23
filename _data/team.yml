@@ -1,8 +1,9 @@
 # Persone dell'agenzia — sezione "Il team" (e voce "Il team" nel menu).
 # Finché l'elenco è vuoto ( [] ) la sezione e la voce di menu NON compaiono.
 #
-# Foto: cartella assets/img/team/, file JPG quadrato (almeno 600×600 px,
-# meglio sotto i 200 KB), nome in minuscolo con trattino: nome-cognome.jpg
+# Foto: cartella assets/img/team/, file JPG di almeno 800×600 px (sotto i 200 KB),
+# volto ben centrato: sul sito viene ritagliata in formato 4:3.
+# Nome in minuscolo con trattino: nome-cognome.jpg
 # Se la foto manca, al suo posto compaiono le iniziali.
 #
 # Contatto: indicare email OPPURE telefono (se ci sono entrambi vale l'email).

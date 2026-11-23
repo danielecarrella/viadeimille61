@@ -209,18 +209,25 @@
     });
   }
 
-  /* ---------- WhatsApp: su telefono si nasconde mentre un modulo è a schermo ---------- */
+  /* ---------- WhatsApp: si nasconde quando sotto ci sono pulsanti, link o campi ---------- */
   const wa = document.querySelector('.wa');
-  if (wa && 'IntersectionObserver' in window) {
-    const small = window.matchMedia('(max-width: 640px)');
-    const onScreen = new Set();
-    const update = () => wa.classList.toggle('is-hidden', small.matches && onScreen.size > 0);
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => { en.isIntersecting ? onScreen.add(en.target) : onScreen.delete(en.target); });
-      update();
-    });
-    document.querySelectorAll('.form').forEach((f) => io.observe(f));
-    small.addEventListener ? small.addEventListener('change', update) : small.addListener(update);
+  if (wa && document.elementsFromPoint) {
+    const INTERATTIVI = 'a, button, input, select, textarea, label, .card';
+    const PUNTI = [[0.5, 0.5], [0.15, 0.15], [0.85, 0.15], [0.15, 0.85], [0.85, 0.85]];
+    let inAttesa = false;
+    const controlla = () => {
+      inAttesa = false;
+      const r = wa.getBoundingClientRect();
+      const coperto = PUNTI.some(([fx, fy]) =>
+        document.elementsFromPoint(r.left + r.width * fx, r.top + r.height * fy)
+          .some((el) => !wa.contains(el) && el.closest(INTERATTIVI)));
+      wa.classList.toggle('is-hidden', coperto);
+    };
+    const programma = () => { if (!inAttesa) { inAttesa = true; requestAnimationFrame(controlla); } };
+    window.addEventListener('scroll', programma, { passive: true });
+    window.addEventListener('resize', programma);
+    setTimeout(controlla, 1200);   // dopo le animazioni d'ingresso
+    setTimeout(controlla, 3000);
   }
 
   /* ---------- Lavora con noi: i bottoni scelgono il percorso nel form ---------- */
